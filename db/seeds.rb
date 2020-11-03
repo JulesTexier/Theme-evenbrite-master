@@ -9,5 +9,5 @@
 a = 0
 10.times do
   a += 1
-  User.create(email: "#{a}@yopmail.com")
+  User.create(email: "#{a}@yopmail.com", password:"blabla")
 end
