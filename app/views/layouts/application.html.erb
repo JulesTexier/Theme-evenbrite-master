@@ -7,15 +7,11 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <p class="notice" style="margin-bottom: 0rem"> <%= notice %></p>
+    <p class="alert" style="margin-bottom: 0rem"><%= alert %></p>
   </head>
-
   <body>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="<%="/"%>">ProjetEventbrite</a>
           <div class="collapse navbar-collapse">
               <ul class="navbar-nav mr-auto">
@@ -27,14 +23,14 @@
                 </li>
               </ul>
           </div>
-          <ul class="nav navbar-nav navbar-right"> 
+          <ul class="nav navbar-nav navbar-right" > 
                 <% if user_signed_in? %>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Mon profil
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="<%=edit_user_registration_path%>">Mon profil </a>
+                          <a class="dropdown-item" href="<%=user_path(current_user)%>">Mon profil </a>
                           <li class="dropdown-item"> <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %> </li>
                     </div>
                   </div>

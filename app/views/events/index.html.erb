@@ -1,2 +1,39 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron jumbotron-fluid d-flex align-items-center " style="height:500px ;background-image: url(https://images.unsplash.com/photo-1484494789010-20fc1a011197?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80);background-position: center center">
+          <div class="container">
+            <h1 class="display-3 ; text-light">Le meilleur du live</h1>
+            <p class="text-light">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p><a class="btn btn-primary btn-lg" href='<%=new_event_path%>' role="button">Crée ton évènement &raquo;</a></p>
+          </div>
+        </div>
+
+       
+        <div class="container">
+
+
+  <%all_events = Event.all%>
+    <div class="row">
+      <%all_events.each do |event|%>
+        <div class="col-md-4 light">
+          <h3><%=event.title%></h3>
+          <h5>Date : <%=event.start_date%></h5>
+          <h5>Lieu : <%=event.location%></h5>
+          <p><%=event.description%></p>
+          <p><a class="btn btn-secondary" href="<%=event_path(event)%>" role="button">En savoir plus &raquo;</a></p>
+        </div>
+      <%end%>
+    </div>
+      
+
+      <%# t.datetime :start_date
+      t.integer :duration
+      t.string :title
+      t.text :description
+      t.integer :price
+      t.string :location %>
+
+      </div> <!-- /container -->
+
+    </main>

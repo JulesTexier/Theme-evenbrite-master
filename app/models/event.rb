@@ -6,17 +6,17 @@ class Event < ApplicationRecord
     # validates :description, presence: true, length: { in: 20..1000 }
     # validates :price, presence: true, value: { in: 1..1000 }
     # validates :location, presence: true
-    validate :is_started
-    validates :duration, presence: true
-    validate :is_multiple_of_5?
+    # validate :is_started
+    # validates :duration, presence: true
+    # validate :is_multiple_of_5?
 
-    def is_multiple_of_5?
-      errors.add(:duration, "The duration should be a multiple of 5") if 
-      duration.to_f % 5 != 0
-    end
+    # def is_multiple_of_5?
+    #   errors.add(:duration, "The duration should be a multiple of 5") if 
+    #   duration.to_f % 5 != 0
+    # end
 
-    def is_started
-        errors.add(:start_date, "Ne peut-être dans le passé") if
-        self.start_date < Time.now
-    end
+    # # def is_started
+    # #   errors.add(:start_date, "Ne peut-être dans le passé") if
+    # #   !start_date.blank? && start_date < Time.now
+    # # end
 end

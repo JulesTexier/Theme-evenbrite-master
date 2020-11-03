@@ -1,2 +1,33 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+
+<div style="width:500px; margin: auto">
+    <%=form_tag url_for(action: 'create'), method: "post" do %>
+            <div class='form-group'>
+                <label for="Titre du Gossip">Titre de l'évènement</label>
+                <input type="text-area" name="title" id="title" class="form-control">
+            </div>
+            <div class='form-group'>
+                <label for="start_date">Date et Heure</label>
+                <input type="datetime-local" name='start_date' id='start_date'class="form-control">
+            </div>
+            <div class='form-group'>
+                <label for="description">Description</label>
+                <input type="text-area" name='description' id='description'class="form-control">
+            </div>
+            <div class='form-group'>
+                <label for="price">Prix</label>
+                <input type="number" name='price' id='price'class="form-control">
+            </div>
+            <div class='form-group'>
+                <button type='submit' class='btn btn-outline-dark'> Confirmer </button>
+            </div>
+        <%end%>
+    </form>
+</div>
+
+      <%# t.datetime :start_date
+      t.integer :duration
+      t.string :title
+      t.text :description
+      t.integer :price
+      t.string :location
+      t.references :admin, index: true %>
