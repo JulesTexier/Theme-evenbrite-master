@@ -6,6 +6,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+ruby '2.7.1'
 
 * System dependencies
 
@@ -20,5 +21,6 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+https://devise-eventbride.herokuapp.com/
 
 * ...
