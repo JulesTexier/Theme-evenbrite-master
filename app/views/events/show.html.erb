@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" style='z-index: 0; width: 100%; heigth: 40%; margin-bottom: 10px;' src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail" style='margin: -90px 10px 0px 50px; z-index: 9; width: 20%;' src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+        <div style="margin-bottom: 50px" class="fb-profile-text">
+            <h1><%=@event.start_date%> - <%=@event.title%></h1>
+                <br></br>
+                <h5>Lieu: <%=@event.location%></h5>
+                <h5>Prix: <%=@event.price%>€</h5> 
+                <h5>Description: <%=@event.description%></h5>
+                <h5>Créateur: <%=@event.admin.email%></h5>
+        <div style="margin-bottom: 50px">
+            <p><%= link_to "Éditez l'évènement", edit_event_path(current_user) %></p>
+        <div>
+
+        </div>
+    </div>
+</div> <!-- /container --> 
+
+<h3>Tes autres évènements</h3>
+
+<%events = Event.where(admin: current_user.id) %>
+<div class="card-columns">
+<%events.each_with_index do |event| %>
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"> <%=event.title%></h5>
+           <h5>Date : <%=event.start_date%></h5>
+          <h5>Lieu : <%=event.location%></h5>
+        <p><a class="btn btn-secondary" href="<%=event_path(event)%>" role="button">En savoir plus &raquo;</a></p>
+
+        
+            </div>
+        </div>
+<%end%>

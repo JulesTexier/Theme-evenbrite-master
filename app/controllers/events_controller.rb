@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :show]
+  before_action :authenticate_user!, only: [:new, :create, :show, :update]
+
 
 
   def index
@@ -7,6 +8,16 @@ class EventsController < ApplicationController
 
   def new
   end
+
+  def update
+    @event = Event.find(params[:id])
+    event_params = params.require(:event).permit(:title, :price, :location, :description, :start_date)
+    if @event.update(event_params)
+      redirect_to @event
+      else 
+      render :edit
+    end
+end
 
   def create
   end
