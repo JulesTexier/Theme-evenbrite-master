@@ -1,38 +1,36 @@
 <div class="container">
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" style='z-index: 0; width: 100%; heigth: 40%; margin-bottom: 10px;' src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+   
+    <%if @user.avatar.attached?%>
+        <%= image_tag @user.avatar, alt: 'avatar', width:'230', height:'230', style:'margin: -90px 10px 0px 50px; z-index: 9;' %>
+            <%else%>
         <img align="left" class="fb-image-profile thumbnail" style='margin: -90px 10px 0px 50px; z-index: 9; width: 20%;' src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+            <%end%>  
+        
         <div style="margin-bottom: 50px" class="fb-profile-text">
             <h1><%=current_user.first_name%> <%=current_user.last_name%></h1>
-            <p>Girls just wanna go fun.</p>
-        <div style="margin-bottom: 50px">
-            <h3 class="row mx-md-n5">Description</h3>
             <p><%=current_user.description%></p>
-            <%= link_to "Éditez votre mot de passe", edit_user_registration_path(current_user) %>
-        <div>
-
+    
+<br>
+        <div style="margin-bottom: 50px">                   
+                <p><%= link_to "Éditez votre mot de passe", edit_user_registration_path(current_user) %></p>
+            <div>
         </div>
     </div>
-</div> <!-- /container --> 
+</div> 
 
-<h3>Tes évènements</h3>
-<div class="mx-auto" style="width: 600px;" button>
-    <%= form_for @user do |f| %>
-        <div class='form-group'>
-            <label> Prénom </label>
-                <%= f.text_field :first_name, class:'form-control' %>
-        </div>
-        <div class='form-group'>
-            <label> Nom </label>
-                <%= f.text_field :last_name, class:'form-control' %>
-        </div>
-        <div class='form-group'>
-            <label> Description </label>
-            <%= f.text_area :description, class:'form-control'%>
-        </div>
-        <div class='form-group'>
-            <button type='submit' class='btn btn-outline-dark'> Modifier </button>
-        </div> 
-    <% end %>
+<div style="width:500px; margin: auto">
+<h3>Mets à jour tes infos</h3>
 
+    <%= simple_form_for @user do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :description%>
+            <%= f.input :avatar, as: :file %>
+            <%= f.button :submit, class: "btn-primary" %>
+            <% end %>
 </div>
+
+<p><%= link_to "Retour au profil", user_path(current_user) %></p>

@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'dotenv-rails'
 gem 'table_print'
 gem 'devise'
+gem 'simple_form'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

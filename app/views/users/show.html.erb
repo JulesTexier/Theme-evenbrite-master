@@ -1,36 +1,35 @@
 <div class="container">
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" style='z-index: 0; width: 100%; heigth: 40%; margin-bottom: 10px;' src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+    
+        <%if @user.avatar.attached?%>
+        <%= image_tag @user.avatar, alt: 'avatar', width:'230', height:'230', style:'margin: -90px 10px 0px 50px; z-index: 9;' %>
+            <%else%>
         <img align="left" class="fb-image-profile thumbnail" style='margin: -90px 10px 0px 50px; z-index: 9; width: 20%;' src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+            <%end%>  
+        
+    
         <div style="margin-bottom: 50px" class="fb-profile-text">
             <h1><%=current_user.first_name%> <%=current_user.last_name%></h1>
-            <p>Girls just wanna go fun.</p>
-        <div style="margin-bottom: 50px">
-            <h3 style='margin-top: 60px'>Description</h3>
             <p><%=current_user.description%></p>
-            
-            <p><%= link_to "Éditez votre mot de passe", edit_user_registration_path(current_user) %></p>
+            <br><br><br><br>
+        <div style="margin-bottom: 50px">          
             <p><%= link_to "Éditez votre profil", edit_user_path(current_user) %></p>
-
-        <div>
-
         </div>
     </div>
-</div> <!-- /container --> 
 
-<h3>Tes évènements</h3>
-
-<%events = Event.where(admin: current_user.id) %>
-<div class="card-columns">
-<%events.each_with_index do |event| %>
-        <div class="card">
-            <div class="card-body">
-            <h5 class="card-title"> <%=event.title%></h5>
-           <h5>Date : <%=event.start_date%></h5>
-          <h5>Lieu : <%=event.location%></h5>
-        <p><a class="btn btn-secondary" href="<%=event_path(event)%>" role="button">En savoir plus &raquo;</a></p>
+        <h3>Tes évènements</h3>
+        <%events = Event.where(admin:current_user.id) %>
+            <div class="card-columns">
+            <%events.each_with_index do |event| %>
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title"> <%=event.title%></h5>
+                    <h5>Date : <%=event.start_date%></h5>
+                    <h5>Lieu : <%=event.location%></h5>
+                        <p><a class="btn btn-secondary" href="<%=event_path(event)%>" role="button">En savoir plus &raquo;</a></p>
+                    </div>
+            </div>
+            <%end%>
 
         
-            </div>
-        </div>
-<%end%>

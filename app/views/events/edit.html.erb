@@ -1,28 +1,22 @@
- 
+    <%if @event.avatar.attached?%>
+        <%= image_tag @event.avatar, alt: 'avatar', width:'630', height:'260', style:'z-index: 0; width: 100%; heigth: 40%; margin-bottom: 10px;' %>
+        <%else%>
+        <img align="left" class="fb-image-lg" style='z-index: 0; width: 100%; heigth: 40%; margin-bottom: 10px;' src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+    <%end%>  
 
 <div style="width:500px; margin: auto">
-    <%=form_tag url_for(action: 'create'), method: "post" do %>
-            <div class='form-group'>
-                <label for="Titre du Gossip">Titre de l'évènement</label>
-                <input type="text-area" name="title" id="title" class="form-control">
-            </div>
-            <div class='form-group'>
-                <label for="start_date">Date et Heure</label>
-                <input type="datetime-local" name='start_date' id='start_date'class="form-control">
-            </div>
-            <div class='form-group'>
-                <label for="description">Description</label>
-                <input type="text-area" name='description' id='description'class="form-control">
-            </div>
-            <div class='form-group'>
-                <label for="price">Prix</label>
-                <input type="number" name='price' id='price'class="form-control">
-            </div>
-            <div class='form-group'>
-                <button type='submit' class='btn btn-outline-dark'> Confirmer </button>
-            </div>
-        <%end%>
-    </form>
+    <%= simple_form_for @event do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :title %>
+            <%= f.input :description%>
+            <%= f.input :start_date %>
+            <%= f.input :price%>
+            <%= f.input :location %>
+            <%= f.input :avatar, as: :file %>
+            <%= f.button :submit, class: "btn-primary" %>
+            <% end %>
+</div>
+
 </div>
 
       <%# t.datetime :start_date
